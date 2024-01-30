@@ -1,5 +1,4 @@
 const mysql = require('mysql2/promise');
-
 const getConnectionPool = ()=>{
     const pool = mysql.createPool({
         host: process.env.DB_HOST,
