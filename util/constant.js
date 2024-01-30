@@ -31,7 +31,7 @@ module.exports = {
       STATUS_CODE: 200,
     },
     SUCCESS_CREATED: {
-      CONTENT: "Successfully resource created",
+      CONTENT: "Successfully resource created!",
       STATUS_CODE: 201,
     },
     BAD_REQUEST: {
