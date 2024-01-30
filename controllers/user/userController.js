@@ -6,6 +6,7 @@ const {
   freeEnrollRegisterService,
   getCheckRole,
   getFreeEnrollUser,
+  updateUser,
 } = require("../../services/User/userService");
 const Joi = require("joi");
 
@@ -52,6 +53,26 @@ const createUser = async (req, res) => {
       .send(MESSAGE.SERVER_ERROR.CONTENT);
   }
 };
+
+//  update user 
+const UpdateBYUser = async (req,res) => {
+ try {
+  const userId = req.params.id 
+   const userData = req.body 
+   console.log(userId)
+   const user = await updateUser(req, userData, userId)
+   if (user) {
+    return res.status(MESSAGE.SUCCESS_GET.STATUS_CODE).send(user);
+   }
+ } catch (error) {
+  return res.status(MESSAGE.SERVER_ERROR.STATUS_CODE).json({
+    message: "Users not found",
+    status: MESSAGE.SERVER_ERROR.STATUS_CODE,
+  });
+ }
+  
+}
+
 
 const getAllUsers = async (req, res) => {
   try {
@@ -170,4 +191,5 @@ module.exports = {
   freeEnrollSchema,
   getCheckRoleByEmail,
   getFreeEnrollUserAll,
+  UpdateBYUser
 };

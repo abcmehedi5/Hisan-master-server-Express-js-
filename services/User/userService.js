@@ -37,6 +37,19 @@ const createUser = async (pool, payload) => {
   return false;
 };
 
+const updateUser = async (req, userData, userId) => {
+  const selectQuery = "SELECT * FROM users WHERE id = ?";
+  const updateQuery = "UPDATE users SET ? WHERE id = ?";
+  const selectValues = [userId];
+  const result = await getData(req.pool, selectQuery, selectValues);
+  if (result && result.length > 0) {
+    const updateData = await executeQuery(req.pool,updateQuery, [userData, userId]);
+    return updateData;
+  } else {
+    return null;
+  }
+};
+
 const getUsers = async (pool) => {
   const query = `SELECT * FROM users`;
   const users = await getData(pool, query);
@@ -85,5 +98,6 @@ module.exports = {
   getSingleUser,
   freeEnrollRegisterService,
   getCheckRole,
-  getFreeEnrollUser
+  getFreeEnrollUser,
+  updateUser
 };

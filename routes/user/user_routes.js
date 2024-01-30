@@ -10,6 +10,7 @@ const {
   freeEnrollRegister,
   getCheckRoleByEmail,
   getFreeEnrollUserAll,
+  UpdateBYUser,
 } = require("../../controllers/user/userController");
 
 const userRouter = express.Router();
@@ -20,6 +21,12 @@ userRouter.post(
   validator(userSchema),
   createUser
 );
+
+//  user update 
+userRouter.put(
+  API.API_CONTEXT + "user/update/:id",
+  UpdateBYUser
+)
 
 // Get all users
 userRouter.get(API.API_CONTEXT + "user", getAllUsers);
